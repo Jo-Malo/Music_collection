@@ -26,6 +26,11 @@ class Artist
 
     #CLASS METHODS
 
+    def self.delete_all()
+      sql = "DELETE FROM artists"
+      db = SqlRunner.run(sql)
+    end
+
     def self.all()
       sql = "SELECT * FROM artists"
       collections = SqlRunner.run(sql)
@@ -33,15 +38,12 @@ class Artist
       return collections_array
     end
 
-    # def self.find(id)
-    #   sql = "SELECT * FROM albums WHERE id = $1"
-    #   values = [id]
-    #   results = SqlRunner.run(sql, values)
-    #   collection_hash = results.first
-    #   collection = Album.new(collection_hash)
-    #   return collection
-    # end
-
+    def self.find(id)
+      sql = "SELECT * FROM artists WHERE id = $1"
+      values = [id]
+      result_hash = SqlRunner.run(sql, values).first()
+      return Artist.new(result_hash)
+    end
 
 
   end
