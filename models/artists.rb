@@ -17,24 +17,31 @@ class Artist
       ) VALUES
       (
         $1
-        )
-        RETURNING id"
-        values = [@name]
-        result = SqlRunner.run(sql, values)
-        @id = result.first()['id'].to_i
-  end
+      )
+      RETURNING id"
+      values = [@name]
+      result = SqlRunner.run(sql, values)
+      @id = result.first()['id'].to_i
+    end
 
-  #CLASS METHODS
+    #CLASS METHODS
 
-  def self.all()
+    def self.all()
       sql = "SELECT * FROM artists"
       collections = SqlRunner.run(sql)
       collections_array = collections.map { |collection| Artist.new(collection) }
       return collections_array
     end
 
-  
+    # def self.find(id)
+    #   sql = "SELECT * FROM albums WHERE id = $1"
+    #   values = [id]
+    #   results = SqlRunner.run(sql, values)
+    #   collection_hash = results.first
+    #   collection = Album.new(collection_hash)
+    #   return collection
+    # end
 
 
 
-end
+  end

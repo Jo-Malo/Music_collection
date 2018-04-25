@@ -38,6 +38,12 @@ def self.all()
     return collections_array
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [id]
+    result_hash = SqlRunner.run(sql, values).first()
+    return Album.new(result_hash)
+  end
 
 
 end

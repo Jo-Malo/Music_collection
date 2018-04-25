@@ -26,7 +26,12 @@ album2 = Album.new({
   })
 album2.save()
 
-
+album3 = Album.new({
+  'artist_id' => artist1.id,
+  'name' => 'Uprising',
+  'genre' => 'reggae'
+  })
+album3.save()
 
 
 binding.pry
